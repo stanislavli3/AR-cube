@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;600&display=swap" rel="stylesheet" />
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
   <style>
     :root {
       --bg: #0c0c0e;
@@ -62,8 +63,25 @@
       position: relative;
       z-index: 1;
       text-align: center;
-      max-width: 420px;
+      max-width: 520px;
       width: 100%;
+    }
+
+    .viewer-wrap {
+      width: 100%;
+      aspect-ratio: 1;
+      max-height: min(70vh, 420px);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--surface);
+      margin-bottom: var(--space);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    model-viewer {
+      width: 100%;
+      height: 100%;
+      --poster-color: transparent;
     }
 
     .badge {
@@ -144,6 +162,17 @@
 </head>
 <body>
   <div class="wrap">
+    <div class="viewer-wrap">
+      <model-viewer
+        src="Archive.glb.usdz"
+        alt="3D model"
+        camera-controls
+        touch-action="pan-y"
+        ar
+        ar-modes="webxr quick-look"
+        ios-src="Archive.glb.usdz"
+      ></model-viewer>
+    </div>
     <span class="badge">AR Experience</span>
     <h1>View the cube in AR</h1>
     <p class="sub">Open on a compatible device to place the 3D cube in your space.</p>
